@@ -21,8 +21,6 @@ const Menu = () => {
         })
      }
 
-    // Return data as different components
-
     return (
         <>
         <div className="container">
