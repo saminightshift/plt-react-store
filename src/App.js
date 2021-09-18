@@ -1,19 +1,19 @@
-import Products from "./Products";
-import Menu  from './Menu';
+import Header from "./components/Header";
+import Shop from "./pages/Shop";
+import Basket from "./pages/Basket";
+import { Route, Switch } from "react-router-dom";
+import { connect } from "react-redux";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        PLT React.
-      </header>
-      <div>
-        <Menu/>
-        <Products/>
-
-      </div>
+      <Header />
+      <Switch>
+        <Route exact path="/" component={Shop} />
+        <Route path="/Basket" component={Basket} />
+      </Switch>
     </div>
   );
 }
 
-export default App;
+export default connect(null)(App);
