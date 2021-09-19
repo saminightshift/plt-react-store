@@ -1,22 +1,36 @@
 import BasketActionTypes from "./basket.types";
-import { addItemToBasket } from "./Basket.utils";
+import { addItem, removeItem } from "./Basket.utils";
 
 const INITIAL_STATE = {
   hidden: true,
   basketItems: [],
 };
 
-const basketReducer = (state = INITIAL_STATE, action) => {
+export const basketReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case "TOGGLE_BASKET_HIDDEN":
+    case BasketActionTypes.TOGGLE_BASKET_HIDDEN:
       return {
         ...state,
-        hidden: !state.hidden,
+        hidden: action.payload ? action.payload : !state.hidden,
       };
     case BasketActionTypes.ADD_ITEM:
       return {
         ...state,
-        basketItems: addItemToBasket(state.basketItems, action.payload),
+        basketItems: addItem(state.basketItems, action.payload),
+      };
+    case BasketActionTypes.CLEAR_ITEM:
+      return {
+        ...state,
+        basketItems: [
+          ...state.basketItems.filter(
+            (basketItem) => basketItem.id !== action.payload
+          ),
+        ],
+      };
+    case BasketActionTypes.REMOVE_ITEM:
+      return {
+        ...state,
+        basketItems: removeItem(state.basketItems, action.payload),
       };
     default:
       return state;

@@ -1,4 +1,4 @@
-export const addItemToBasket = (basketItems, basketItemToAdd) => {
+export const addItem = (basketItems, basketItemToAdd) => {
   const existingBasketItem = basketItems.find(
     (basketItem) => basketItem.id === basketItemToAdd.id
   );
@@ -12,4 +12,21 @@ export const addItemToBasket = (basketItems, basketItemToAdd) => {
   }
 
   return [...basketItems, { ...basketItemToAdd, quantity: 1 }];
+};
+
+export const removeItem = (basketItems, basketItemToRemove) => {
+  const existingBasketItem = basketItems.find(
+    (basketItem) => basketItem.id === basketItemToRemove.id
+  );
+
+  if (existingBasketItem.quantity === 1) {
+    return basketItems.filter(
+      (basketItem) => basketItem.id !== basketItemToRemove.id
+    );
+  }
+  return basketItems.map((basketItem) =>
+    basketItem.id === basketItemToRemove.id
+      ? { ...basketItem, quantity: basketItem.quantity - 1 }
+      : { ...basketItem }
+  );
 };
