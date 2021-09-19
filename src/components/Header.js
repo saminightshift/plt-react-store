@@ -1,14 +1,17 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import BasketIconComponent from "./BasketIconComponent";
 import BasketDropdown from "./BasketComponent";
 import { connect } from "react-redux";
-import "../styles/menu.dropdown.scss";
 
 const Header = ({ hidden }) => {
   const [menus, setMenus] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const [isCollapsed, setIsCollapsed] = useState(true);
+
+  const handleNavCollapse = () => setIsCollapsed(!isCollapsed);
 
   useEffect(() => {
     getMenu();
@@ -40,31 +43,40 @@ const Header = ({ hidden }) => {
               <>
                 {menu.children.map((child, i) => (
                   <div className="nav justify-content-center">
-                    <ul className="list-group list-group-horizontal">
-                      <li
-                        className="nav-link dropdown-toggle text-light "
+                    <div className="btn-group">
+                      <button
+                        type="button"
+                        className="btn btn-dark dropdown-toggle"
+                        data-toggle="collapse"
+                        data-target="#navbarNavDropdown"
+                        aria-controls="navbarNavDropdown"
+                        aria-expanded={!isCollapsed ? true : false}
+                        aria-label="Toggle dropdown"
                         key={i}
+                        onClick={handleNavCollapse}
                       >
                         {child.name}
-                        {hidden ? null : (
-                          <ul
-                            className="dropdown-menu"
-                            aria-labelledby="navbarDropdown"
-                          >
-                            {child.categories.map((item) => {
-                              return (
-                                <li
-                                  className="dropdown-item text-light"
-                                  key={item}
-                                >
-                                  {item}
-                                </li>
-                              );
-                            })}
-                          </ul>
-                        )}
-                      </li>
-                    </ul>
+                      </button>
+                      <div
+                        className={`${
+                          isCollapsed ? "collapse" : ""
+                        } navbar-collapse`}
+                        id="navbarDropDown"
+                      >
+                        <ul className="dropdown-menu">
+                          {child.categories.map((item) => {
+                            return (
+                              <li
+                                className="dropdown-item text-light"
+                                key={item}
+                              >
+                                {item}
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </div>
+                    </div>
                   </div>
                 ))}
               </>

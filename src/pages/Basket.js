@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import "../styles/basket.styles.scss";
+import Button from "../components/Button.component";
 import { createStructuredSelector } from "reselect";
 import {
   selectBasketItems,
@@ -32,6 +33,9 @@ const Basket = ({ basketItems, total }) => (
     ))}
     <div className="total">
       <span>TOTAL: £{total}</span>
+    </div>
+    <div className=" d-flex align-items-center mt-4">
+      <Button to="/">Back to shop</Button>
     </div>
   </div>
 );
