@@ -10,10 +10,6 @@ const Header = ({ hidden }) => {
   const [menus, setMenus] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const dropdownRef = useRef(null);
-  const [isActive, setIsActive] = useState(false);
-  const onClick = () => setIsActive(!isActive);
-
   useEffect(() => {
     getMenu();
   }, []);
@@ -39,30 +35,21 @@ const Header = ({ hidden }) => {
             </Link>
           </h1>
 
-          <div>
-            {loading &&
-              menus.map((menu) => (
-                <>
-                  {menu.children.map((child, i) => (
-                    <div className="nav-item dropdown row">
-                      <div className="col d-flex">
-                        <li
-                          className="nav-link dropdown-toggle text-light"
-                          key={i}
-                          href="#"
-                          id="#navbarDropdown"
-                          role="button"
-                          data-bs-toggle="dropdown"
-                          aria-expanded="false"
-                          onClick={onClick}
-                        >
-                          {child.name}
+          {loading &&
+            menus.map((menu) => (
+              <>
+                {menu.children.map((child, i) => (
+                  <div className="nav justify-content-center">
+                    <ul className="list-group list-group-horizontal">
+                      <li
+                        className="nav-link dropdown-toggle text-light "
+                        key={i}
+                      >
+                        {child.name}
+                        {hidden ? null : (
                           <ul
-                            className={`menu ${
-                              isActive ? "active" : "inactive"
-                            } dropdown-menu`}
+                            className="dropdown-menu"
                             aria-labelledby="navbarDropdown"
-                            dropdownRef={dropdownRef}
                           >
                             {child.categories.map((item) => {
                               return (
@@ -75,13 +62,13 @@ const Header = ({ hidden }) => {
                               );
                             })}
                           </ul>
-                        </li>
-                      </div>
-                    </div>
-                  ))}
-                </>
-              ))}
-          </div>
+                        )}
+                      </li>
+                    </ul>
+                  </div>
+                ))}
+              </>
+            ))}
           <div className="basket-menu px-4">
             <BasketIconComponent />
           </div>
