@@ -1,13 +1,21 @@
 import React from "react";
 import { connect } from "react-redux";
-import BasketItem from "../components/BasketItem";
 import "../styles/basket.styles.scss";
+import { createStructuredSelector } from "reselect";
+import {
+  selectBasketItems,
+  selectBasketTotal,
+} from "../redux/basket.selectors";
+import CheckoutItem from "../components/CheckoutItem";
 
-const Basket = (basketItems) => (
+const Basket = ({ basketItems, total }) => (
   <div className="checkout-page">
     <div className="checkout-header">
       <div className="header-block">
         <span>Product</span>
+      </div>
+      <div className="header-block">
+        <span>Description</span>
       </div>
       <div className="header-block">
         <span>Quantity</span>
@@ -19,24 +27,18 @@ const Basket = (basketItems) => (
         <span>Remove</span>
       </div>
     </div>
-    <div className="basket-items">
-      {basketItems.length ? (
-        basketItems.map((basketItem) => (
-          <BasketItem key={basketItem.name} item={basketItem} />
-        ))
-      ) : (
-        <span className="empty-message">Your basket is empty</span>
-      )}
+    {basketItems.map((basketItem) => (
+      <CheckoutItem basketItem={basketItem} key={basketItem.id} />
+    ))}
+    <div className="total">
+      <span>TOTAL: £{total}</span>
     </div>
   </div>
 );
 
-const mapStateToProps = ({ basket: { basketItems } }) => ({
-  itemCount: basketItems.reduce(
-    (accumulatedQuantity, basketItem) =>
-      accumulatedQuantity + basketItem.quantity,
-    0
-  ),
+const mapStateToProps = createStructuredSelector({
+  basketItems: selectBasketItems,
+  total: selectBasketTotal,
 });
 
 export default connect(mapStateToProps)(Basket);

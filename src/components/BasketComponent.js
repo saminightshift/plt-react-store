@@ -3,11 +3,12 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import BasketItem from "./BasketItem";
 import Button from "../components/Button.component";
-
+import { toggleBasketHidden } from "../redux/basket.actions";
+import ReduxThunk from "redux-thunk";
 import "../styles/basket.dropdown.scss";
 import "../styles/button.styles.scss";
 
-const BasketDropdown = ({ basketItems, history }) => (
+const BasketDropdown = ({ basketItems, history, dispatch }) => (
   <div className="basket-dropdown">
     <div className="basket-items">
       {basketItems.length ? (
@@ -18,7 +19,13 @@ const BasketDropdown = ({ basketItems, history }) => (
         <span className="empty-message">Your basket is empty</span>
       )}
     </div>
-    <Button className="button" onClick={() => history.push("/basket")}>
+    <Button
+      className="button"
+      onClick={() => {
+        history.push("/basket");
+        dispatch(toggleBasketHidden());
+      }}
+    >
       GO TO CHECKOUT
     </Button>
   </div>

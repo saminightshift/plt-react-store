@@ -20,7 +20,7 @@ const BasketIconComponent = ({ toggleBasketHidden, itemCount }) => {
 const mapStateToProps = ({ basket: { basketItems } }) => ({
   itemCount: basketItems.reduce(
     (accumulatedQuantity, basketItem) =>
-      accumulatedQuantity + basketItem.quantity,
+      basketItem.quantity + accumulatedQuantity,
     0
   ),
 });
