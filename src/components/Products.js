@@ -28,25 +28,36 @@ const Products = ({ addItem }) => {
     <>
       {loading &&
         products.map((item) => (
-          <div className="container">
-            <div className="card" key={item.id}>
-              <img src={item.img} alt={item.name} width="100%" />
-              <div className="card-body">
-                <h4 className="card-title">{item.name.toUpperCase()}</h4>
-                <p className="card-text">
-                  £{item.price}
-                  <br />
-                  <br />
-                </p>
-              </div>
-              <div className="card-footer">
-                <Button
-                  type="button"
-                  onClick={() => addItem(item)}
-                  className="button"
-                >
-                  Add to Cart
-                </Button>
+          <div className="col">
+            <div className="card-group">
+              <div
+                className="card h-100 mb-4"
+                key={item.id}
+                style={{ width: "100%" }}
+              >
+                <img
+                  className="card-img-top"
+                  src={item.img}
+                  alt={item.name}
+                  width="100%"
+                />
+                <div className="card-body">
+                  <h5 className="card-title mb-4">{item.name.toUpperCase()}</h5>
+                  <p className="card-text text-muted">
+                    £{item.price}
+                    <br />
+                    <br />
+                  </p>
+                  <div className="container">
+                    <Button
+                      type="button"
+                      onClick={() => addItem(item)}
+                      className="button"
+                    >
+                      Add to Cart
+                    </Button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

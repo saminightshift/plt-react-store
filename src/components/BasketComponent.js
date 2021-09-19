@@ -4,7 +4,6 @@ import { withRouter } from "react-router";
 import BasketItem from "./BasketItem";
 import Button from "../components/Button.component";
 import { toggleBasketHidden } from "../redux/basket.actions";
-import ReduxThunk from "redux-thunk";
 import "../styles/basket.dropdown.scss";
 import "../styles/button.styles.scss";
 
@@ -26,7 +25,7 @@ const BasketDropdown = ({ basketItems, history, dispatch }) => (
         dispatch(toggleBasketHidden());
       }}
     >
-      GO TO CHECKOUT
+      CHECKOUT
     </Button>
   </div>
 );

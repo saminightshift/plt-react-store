@@ -2,14 +2,12 @@ import React from "react";
 import "../styles/basket.icon.scss";
 import { ReactComponent as BasketIcon } from "../assets/shopping-bag.svg";
 import { connect } from "react-redux";
-// import { selectBasketItems } from "../redux/basket.selectors";
-
 import { toggleBasketHidden } from "../redux/basket.actions";
 
 const BasketIconComponent = ({ toggleBasketHidden, itemCount }) => {
   return (
     <>
-      <div className="basket-icon" onClick={toggleBasketHidden}>
+      <div className="basket-icon btn btn-light" onClick={toggleBasketHidden}>
         <BasketIcon className="shopping-icon" />
         <span className="item-count">{itemCount}</span>
       </div>
