@@ -4,11 +4,8 @@ import "../styles/button.styles.scss";
 
 // Created this component to reuse app wide for all buttons
 
-const Button = ({ children, inverted, ...otherProps }) => (
-  <button
-    className={`${inverted ? "inverted" : ""} custom-button`}
-    {...otherProps}
-  >
+const Button = ({ children, inverted, ...props }) => (
+  <button className={`${inverted ? "inverted" : ""} button`} {...props}>
     {children}
   </button>
 );

@@ -9,12 +9,13 @@
   background-color: black;
   color: white;
   text-transform: uppercase;
-  font-family: "Open Sans Condensed";
-  font-weight: bolder;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal;
   border: none;
   cursor: pointer;
   display: flex;
   justify-content: center;
+  text-decoration: none;
 
   &:hover {
     background-color: white;

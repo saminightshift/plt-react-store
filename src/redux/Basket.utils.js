@@ -1,6 +1,6 @@
 export const addItemToBasket = (basketItems, basketItemToAdd) => {
   const existingBasketItem = basketItems.find(
-    (basketItem) => basketItem.id === basketItem.id
+    (basketItem) => basketItem.id === basketItemToAdd.id
   );
 
   if (existingBasketItem) {

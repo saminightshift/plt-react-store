@@ -2,6 +2,7 @@ import React from "react";
 import "../styles/basket.icon.scss";
 import { ReactComponent as BasketIcon } from "../assets/shopping-bag.svg";
 import { connect } from "react-redux";
+// import { selectBasketItems } from "../redux/basket.selectors";
 
 import { toggleBasketHidden } from "../redux/basket.actions";
 

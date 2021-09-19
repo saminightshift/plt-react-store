@@ -3,6 +3,7 @@ import axios from "axios";
 import "../styles/button.styles.scss";
 import { connect } from "react-redux";
 import { addItem } from "../redux/basket.actions";
+import Button from "./Button.component";
 
 const Products = ({ addItem }) => {
   const [products, setProducts] = useState([]);
@@ -39,13 +40,13 @@ const Products = ({ addItem }) => {
                 </p>
               </div>
               <div className="card-footer">
-                <button
+                <Button
                   type="button"
                   onClick={() => addItem(item)}
                   className="button"
                 >
                   Add to Cart
-                </button>
+                </Button>
               </div>
             </div>
           </div>
